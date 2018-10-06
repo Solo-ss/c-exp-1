@@ -1,12 +1,77 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "lib/tinyexpr.h"
 
+#define TRUE 1
+
+void cexpGen();
 void *trim(char input[], char destination[]);
 
-int main() {
-
+int main()
+{
+    cexpGen();
     return 0;
+}
+
+void cexpGen()
+{
+    char c_exp[18] = "1 2 3 4 5 6 7 8 9";
+    char expressions[4] = "+- ";
+    char cexpTmp[25];
+    int index[8];
+    char c[9];
+
+    int j = 1;
+
+    for (int i = 0; i < 8; i++)
+    {
+        c[i] = '+';
+        index[i] = 0;
+    }
+
+    for (int i = 0; i < 24; i++)
+    {
+        cexpTmp[i] = '\0';
+    }
+
+    while (TRUE)
+    {
+        trim(c_exp, cexpTmp);
+        if (te_interp(cexpTmp, 0) == 100)
+        {
+            printf("%s = 100\n", cexpTmp);
+        }
+
+        int k = sizeof(index) / sizeof(index[0]) - 1;
+        for (; k >= 0; k--)
+        {
+            index[k] += 1;
+            if (index[k] < 3)
+            {
+                c[k] = expressions[index[k]];
+                break;
+            }
+
+            index[k] = 0;
+            c[k] = expressions[index[k]];
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            if (j >= 17)
+                break;
+
+            c_exp[j] = c[i];
+
+            j += 2;
+        }
+
+        j = 1;
+
+        if (k < 0)
+            break;
+    }
 }
 
 void *trim(char input[], char destination[])
