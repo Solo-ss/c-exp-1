@@ -6,7 +6,7 @@
 #define TRUE 1
 
 void cexpGen();
-void *trim(char input[], char destination[]);
+void trim(char input[], char destination[]);
 
 int main()
 {
@@ -74,7 +74,7 @@ void cexpGen()
     }
 }
 
-void *trim(char input[], char destination[])
+void trim(char input[], char destination[])
 {
     for (int i = 0; i < strlen(input); i++)
     {
