@@ -5,16 +5,9 @@
 
 #define TRUE 1
 
-void cexpGen();
 void trim(char input[], char destination[]);
 
 int main()
-{
-    cexpGen();
-    return 0;
-}
-
-void cexpGen()
 {
     char c_exp[18] = "1 2 3 4 5 6 7 8 9";
     char expressions[4] = "+- ";
@@ -72,6 +65,8 @@ void cexpGen()
         if (k < 0)
             break;
     }
+
+    return 0;
 }
 
 void trim(char input[], char destination[])
